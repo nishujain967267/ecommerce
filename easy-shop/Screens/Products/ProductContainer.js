@@ -40,6 +40,7 @@ const ProductContainer = (props) => {
         axios
           .get(`${baseURL}products`)
           .then((res) => {
+            console.log("helloooooooooooooooooo>>>>>",res.data)
             setProducts(res.data);
             setProductsFiltered(res.data);
             setProductsCtg(res.data);
@@ -93,16 +94,19 @@ const ProductContainer = (props) => {
 
   // Categories
   const changeCtg = (ctg) => {
-    {
+    
+    console.log("cttgggggg",ctg)
       ctg === "all"
         ? [setProductsCtg(initialState), setActive(true)]
         : [
             setProductsCtg(
-              products.filter((i) => i.category._id === ctg),
+              // products.filter((i) => i.category._id === ctg),
+                 products.filter((i) => i.category._id === ctg),
+
               setActive(true)
             ),
           ];
-    }
+    
   };
 
   return (

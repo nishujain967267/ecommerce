@@ -30,8 +30,9 @@ const UserProfile = props => {
 
         AsyncStorage.getItem ('jwt')
           .then (res => {
+            console.log (context.stateUser);
             axios
-              .get (`${baseURL}users/${context.stateUser.user.sub}`, {
+              .get (`${baseURL}users/${context.stateUser.user.userId}`, {
                 headers: {Authorization: `Bearer ${res}`},
               })
               .then (user => setUserProfile (user.data));
@@ -44,7 +45,7 @@ const UserProfile = props => {
             const data = x.data;
             console.log (data);
             const userOrders = data.filter (
-              order => order.user._id === context.stateUser.user.sub
+              order => order.user._id === context.stateUser.user.userId
             );
             setOrders (userOrders);
           })
